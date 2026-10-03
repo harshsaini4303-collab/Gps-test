@@ -1,1 +1,38 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPS Test</title>
+</head>
+<body>
+  <h2>GPS Location Test</h2>
+  <p>Apni location share karne ke liye button dabao.</p>
+
+  <button onclick="getLocation()">Get My Location</button>
+
+  <p id="result"></p>
+
+  <script>
+    function getLocation() {
+      if (!navigator.geolocation) {
+        document.getElementById("result").innerText =
+          "Geolocation supported nahi hai.";
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          document.getElementById("result").innerHTML =
+            "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longitude;
+        },
+        function() {
+          document.getElementById("result").innerText =
+            "Location permission nahi mili.";
+        }
+      );
+    }
+  </script>
+</body>
+</html>
